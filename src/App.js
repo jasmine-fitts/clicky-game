@@ -3,13 +3,16 @@ import React, { Component } from 'react';
 import './App.css';
 import Wrapper from './components/Wrapper'
 import characters from './characters.json'
-import Navbar from './components/Navbar';
+import Navpills from './components/Navpills';
 import Title from './components/Title';
-import characterCard from './components/characterCard';
+import CharacterCard from './components/CharacterCard';
 
-class App extends Comment {
+
+
+
+class App extends Component {
   state = {
-    message: "Click an image to begin!", 
+    message: "Click on an image to begin!", 
     highScore: 0,
     currentScore: 0,
     characters: characters,
@@ -31,7 +34,7 @@ class App extends Comment {
 
     if (findCharacter === undefined) {
       //failure to select a new character
-      this.state({
+      this.setState({
         message: "Wrong Guess. You lose!", 
         highScore: (this.state.currentScore > this.state.highScore) ? this.state.currentScore : this.state.highScore, 
         currentScore: 0,
@@ -41,9 +44,9 @@ class App extends Comment {
     }
     else { 
       //user selects a character
-      const newCharacter = this.state.unselectedCharacters.filter(item => item.mouthers != mouthers);
+      const newCharacter = this.state.unselectedCharacters.filter(item => item.mouthers !== mouthers);
 
-      this.state({
+      this.setState({
         message: "Good Guess!", 
         currentScore: this.state.currentScore + 1,
         characters: characters,  
@@ -58,45 +61,26 @@ class App extends Comment {
   render () {
     return (
       <Wrapper>
-        <Navbar>
-          message={this.state.message}
-          currentScore={this.state.currentScore}
-          highScore={this.state.highScore}
-          
-        </Navbar>
+        <Navpills 
+        message={this.state.message}
+        currentScore={this.state.currentScore}
+        highScore={this.state.highScore}
+        />
         <Title/>
         {
           this.state.characters.map(character => (
-            <characterCard
-                  mouthers={character.mouthers}
-                  image={character.image}
-                  selectCharacter={this.selectCharacter}
-                  highScore={this.state.highScore}
-                  />
+            <CharacterCard
+              mouthers={character.mouthers}
+              image={character.image}
+              selectCharacter={this.selectCharacter}
+              currentScore={this.state.currentScore}
+              />
           ))
         }
       </Wrapper>
     );
+
   }
 }
-
-
-
-
-// class App extends Component {
-//   render() {
-//     return (
-//       <div className="App">
-//         <header className="App-header">
-//           <img src={logo} className="App-logo" alt="logo" />
-//           <h1 className="App-title">Welcome to React</h1>
-//         </header>
-//         <p className="App-intro">
-//           To get started, edit <code>src/App.js</code> and save to reload.
-//         </p>
-//       </div>
-//     );
-//   }
-// }
 
 export default App;
