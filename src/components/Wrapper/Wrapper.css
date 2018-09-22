@@ -1,5 +1,5 @@
 .wrapper {
-    background: #ECEFF1;
+    background: rgb(37, 96, 136);
     height: 100%;
     display: flex;
     flex-flow: row wrap;

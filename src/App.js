@@ -3,8 +3,8 @@ import React, { Component } from 'react';
 import './App.css';
 import Wrapper from './components/Wrapper'
 import characters from './characters.json'
-import Navpills from './components/Navpills';
-import Title from './components/Title';
+import Navbar from './components/Navbar';
+import Header from './components/Header';
 import CharacterCard from './components/CharacterCard';
 
 
@@ -61,12 +61,12 @@ class App extends Component {
   render () {
     return (
       <Wrapper>
-        <Navpills 
+        <Navbar
         message={this.state.message}
         currentScore={this.state.currentScore}
         highScore={this.state.highScore}
         />
-        <Title/>
+        <Header/>
         {
           this.state.characters.map(character => (
             <CharacterCard
